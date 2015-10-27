@@ -242,3 +242,27 @@
        (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
 (global-set-key (kbd "C-x t") 'transpose-windows)
+
+; Polymode for rmd files
+(add-to-list 'load-path "~/.emacs.d/polymode/")
+(require 'poly-R)
+(require 'poly-markdown)
+
+;;; MARKDOWN
+(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+
+;;; R modes
+(add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
+(add-to-list 'auto-mode-alist '("\\.Rmd" . poly-markdown+r-mode))
+
+
+(require 'iso-transl)
+
+;cycle forward in the kill ring
+
+(defun yank-pop-forwards (arg)
+      (interactive "p")
+      (yank-pop (- arg)))
+
+(global-set-key "\M-Y" 'yank-pop-forwards) ; M-Y (Meta-Shift-Y)
