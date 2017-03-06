@@ -24,7 +24,7 @@ git config --global user.email "thomas.rosendal@sva.se"
 sudo apt-get install -y software-properties-common && \
 sudo apt-get install -y apt-transport-https && \
 sudo apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E084DAB9 && \
-sudo add-apt-repository "deb https://cran.rstudio.com/bin/linux/ubuntu trusty/" && \
+sudo add-apt-repository "deb https://cran.rstudio.com/bin/linux/ubuntu xenial/" && \
 sudo apt-get update && sudo apt-get install -y r-base && sudo apt-get install -y r-base-dev
 
 
