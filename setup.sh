@@ -30,7 +30,7 @@ sudo apt-get update && sudo apt-get install -y r-base && sudo apt-get install -y
 
 ##
 ## emacs
-##
+## Enable source code in ubuntu
 sudo apt-get update
 sudo apt-get -y install build-essential
 sudo apt-get -y build-dep emacs24
