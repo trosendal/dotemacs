@@ -12,15 +12,9 @@ sudo apt-get -y install texlive-full
 ##
 ## git
 ##
-sudo apt-get install -y libcurl4-gnutls-dev libexpat1-dev gettext libz-dev libssl-dev
-sudo apt-get install -y asciidoc xmlto docbook2x
-wget https://www.kernel.org/pub/software/scm/git/git-2.12.0.tar.gz
-tar -zxf git-2.12.0.tar.gz
-cd git-2.12.0
-make configure
-./configure --prefix=/usr
-make all doc info
-sudo make install install-doc install-html install-info
+sudo apt-add-repository ppa:git-core/ppa
+sudo apt-get update
+sudo apt-get install git
 git config --global user.name "Thomas Rosendal"
 git config --global user.email "thomas.rosendal@sva.se"
 
