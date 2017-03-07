@@ -1,0 +1,18 @@
+# /etc/fstab: static file system information.
+#
+# Use 'blkid' to print the universally unique identifier for a
+# device; this may be used with UUID= as a more robust way to name devices
+# that works even if disks are added and removed. See fstab(5).
+#
+# <file system> <mount point>   <type>  <options>       <dump>  <pass>
+# / was on /dev/sda5 during installation
+UUID=b7784158-a768-469d-8409-6dacf91f931d /               ext4    errors=remount-ro 0       1
+# swap was on /dev/sda6 during installation
+UUID=4b516bd5-2cdf-44c1-b944-aa176c7a92ff none            swap    sw              0       0
+/dev/disk/by-uuid/80FA00E0FA00D476 /media/trosendal/OS auto nosuid,nodev,nofail 0 0
+//10.5.0.136/users$/thomas.rosendal /media/h cifs credentials=/home/trosendal/.smbcredentials,iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0
+//10.5.0.136/enhet$ /media/i cifs credentials=/home/trosendal/.smbcredentials,iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0
+//10.5.0.136/svainfo$ /media/s cifs credentials=/home/trosendal/.smbcredentials,iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0
+//10.5.0.136/t /media/t cifs credentials=/home/trosendal/.smbcredentials,iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0
+//webutv/ESS /media/ESS_webpages cifs credentials=/home/trosendal/.smbcredentials,iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0
+//ubuntu1/share /media/ubuntu1 cifs credentials=/home/trosendal/.smbcredentials,iocharset=utf8,gid=1000,uid=1000,file_mode=0777,dir_mode=0777 0 0
