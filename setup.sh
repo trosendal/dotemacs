@@ -43,4 +43,9 @@ make
 make install
 cd ..
 wget https://raw.githubusercontent.com/trosendal/dotemacs/master/.emacs
-
+##
+## Other stuff 
+##
+## RStudio
+## QGIS
+## LibreOffice
