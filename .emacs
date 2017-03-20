@@ -5,7 +5,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (set-window-fringes nil 0 0)
-(toggle-frame-fullscreen)
+;; (toggle-frame-fullscreen)
 ;;
 ;; Add the package archives
 (package-initialize)
@@ -18,7 +18,8 @@
 (global-set-key (kbd "C-c a") 'org-agenda)
 (split-window-right)
 (dired "~/projects/")
-(text-scale-set -2)
+(dired-hide-details-mode)
+(text-scale-set -1)
 (other-window 1)
 (find-file "~/projects/schedule.org")
 (load-theme 'tango-dark)
@@ -31,6 +32,8 @@
 ;;
 (setq initial-scratch-message "")
 ;;
+;; Add column  numbers
+(setq column-number-mode t)
 ;; Section 1: Important stuff
 ;;
 ;; Backup file location
@@ -50,6 +53,7 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; Set the default Dictionary
 (setq ispell-dictionary "british")
+(setq ispell-personal-dictionary "~/.personal-dictionary")
 ;;
 ;; encoding of files UTF-8
 (prefer-coding-system 'utf-8)
@@ -80,8 +84,9 @@
 (global-set-key (kbd "<f5>") 'magit-status)
 (global-set-key (kbd "<Scroll_Lock>") 'make-frame-command)
 (global-set-key (kbd "C-x C-b") 'ibuffer)
-
+;;
 ;; Autocomplete
+;;
 (require 'auto-complete-config)
 (require 'auto-complete)
 (ac-config-default)
@@ -106,6 +111,9 @@
 (add-hook 'LaTeX-mode-hook 'turn-on-reftex)
 (setq TeX-parse-self t) ; Enable parse on load.
 (setq TeX-auto-save t) ; Enable parse on save.
+;;
+;; Markdown mode
+(require 'markdown-mode)
 ;;
 ;; Add yasnippet
 ;;
@@ -133,8 +141,11 @@
  '(nil nil t)
  '(org-agenda-files (quote ("~/projects/schedule.org")))
  '(send-mail-function (quote smtpmail-send-it))
- '(smtpmail-smtp-server "smtp1.sva.se")
- '(smtpmail-smtp-service 25))
+ ;; '(smtpmail-smtp-server "smtp1.sva.se")
+ ;; '(smtpmail-smtp-service 25)
+ '(smtpmail-smtp-server "localhost")
+ '(smtpmail-smtp-service 1025)
+ )
 ;;
 ;; Email address
 ;;
@@ -146,13 +157,13 @@
 (setq nnml-directory "~/mail")
 (setq message-directory "~/mail")
 (setq gnus-select-method
-      '(nnimap "outlook.office365.com"
-               (nnimap-address "outlook.office365.com")
-               (nnimap-server-port 993)
+      '(nnimap "davmail"
+               (nnimap-address "localhost")
+               (nnimap-server-port 1143)
                (nnimap-stream ssl)))
- (setq gnus-thread-sort-functions
-       '(gnus-thread-sort-by-number
-       (not gnus-thread-sort-by-date)))
+(setq gnus-thread-sort-functions
+      '(gnus-thread-sort-by-number
+	(not gnus-thread-sort-by-date)))
 ;;
 ;; resize windows quickly
 ;;
