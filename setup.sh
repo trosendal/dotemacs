@@ -30,21 +30,14 @@ sudo apt-get update && sudo apt-get install -y r-base && sudo apt-get install -y
 
 ##
 ## emacs
-## Enable source code in ubuntu
+## Install snapshot
+sudo add-apt-repository ppa:ubuntu-elisp/ppa
 sudo apt-get update
-sudo apt-get -y install build-essential
-sudo apt-get -y build-dep emacs24
-wget http://ftp.gnu.org/gnu/emacs/emacs-24.5.tar.gz
-tar -zxvf emacs-24.5.tar.gz
-cd emacs-24.5
-./autogen.sh
-./configure
-make
-make install
-cd ..
-wget https://raw.githubusercontent.com/trosendal/dotemacs/master/.emacs
+sudo apt-get install emacs-snapshot
+cd ~/projects && git clone git@github.com:trosendal/dotemacs.git
+ln -s ~/projects/dotemacs/.emacs ~/.emacs
 ##
-## Other stuff 
+## Other stuff
 ##
 ## RStudio
 ## QGIS
