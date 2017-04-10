@@ -92,6 +92,10 @@
 (ac-config-default)
 (setq ess-tab-complete-in-script t)
 ;;
+;; Multiple cursors
+;;
+(require 'multiple-cursors)
+;;
 ;; Latex compilation and preview
 ;;
 (add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.90.0/")
