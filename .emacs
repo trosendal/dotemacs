@@ -144,12 +144,12 @@
  ;; If there is more than one, they won't work right.
  '(nil nil t)
  '(org-agenda-files (quote ("~/projects/schedule.org")))
+ '(package-selected-packages
+   (quote
+    (indium polymode org multiple-cursors multi-web-mode markdown-mode magit ess-R-object-popup dired+ auto-complete-auctex auctex)))
  '(send-mail-function (quote smtpmail-send-it))
- ;; '(smtpmail-smtp-server "smtp1.sva.se")
- ;; '(smtpmail-smtp-service 25)
  '(smtpmail-smtp-server "localhost")
- '(smtpmail-smtp-service 1025)
- )
+ '(smtpmail-smtp-service 1025))
 ;;
 ;; Email address
 ;;
@@ -239,6 +239,7 @@
     (message "Opening %s..." file)
     (call-process "gnome-open" nil 0 nil file)
     (message "Opening %s done" file)))
+(global-set-key (kbd "<f4>") 'dired-open-file)
 ;;
 ;; html and javascript editing
 ;;
@@ -410,3 +411,9 @@
        (setq arg (if (plusp arg) (1- arg) (1+ arg))))))
 
 (global-set-key (kbd "C-x t") 'transpose-windows)
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
