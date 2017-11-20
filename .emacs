@@ -243,6 +243,15 @@
     (message "Opening %s done" file)))
 (global-set-key (kbd "<f4>") 'dired-open-file)
 ;;
+;; Navigate up to parent directory in dired with C-.  The default
+;; keyboard shortcut is annoying on the Swedish keyboard because the ^
+;; key requires you to press S-^ <space>.
+;;
+;; Note the definition to the dired mode only *after* loading dired
+;;
+(eval-after-load 'dired
+                    '(define-key dired-mode-map (kbd "C-.") 'dired-up-directory))
+;;
 ;; html and javascript editing
 ;;
 (require 'multi-web-mode)
