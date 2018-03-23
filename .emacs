@@ -8,7 +8,7 @@
 ;; (toggle-frame-fullscreen)
 ;;
 ;; Add the package archives
-(package-initialize)
+;; (package-initialize)
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
                          ("melpa" . "http://melpa.milkbox.net/packages/")))
 ;;
@@ -22,7 +22,7 @@
 (text-scale-set -1)
 (other-window 1)
 (find-file "~/projects/schedule.org")
-(load-theme 'whiteboard)
+(load-theme 'misterioso)
 ;;
 ;; Get rid of splash screen
 ;;
@@ -428,3 +428,9 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+;;
+;; C code style
+;;
+(setq c-default-style "k&r"
+      c-basic-offset 4)
+(setq-default indent-tabs-mode nil)
