@@ -5,7 +5,7 @@
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
 (set-window-fringes nil 0 0)
-;; (toggle-frame-fullscreen)
+;;(toggle-frame-fullscreen)
 ;;
 ;; Add the package archives
 ;; (package-initialize)
@@ -21,7 +21,7 @@
 (dired-hide-details-mode)
 (text-scale-set -1)
 (other-window 1)
-(find-file "~/projects/schedule.org")
+;;(find-file "~/projects/schedule.org")
 (load-theme 'misterioso)
 ;;
 ;; Get rid of splash screen
@@ -87,7 +87,7 @@
 ;;
 ;; Autocomplete
 ;;
-(require 'auto-complete-config)
+;(require 'auto-complete-config)
 (require 'auto-complete)
 (ac-config-default)
 (setq ess-tab-complete-in-script t)
@@ -98,7 +98,7 @@
 ;;
 ;; Latex compilation and preview
 ;;
-(add-to-list 'load-path "~/.emacs.d/elpa/auctex-11.90.0/")
+(add-to-list 'load-path "~/.emacs.d/elpa/auctex-12.1.1/")
 (load "auctex.el" nil t t)
 (require 'tex-site)
 (setq TeX-auto-save t)
@@ -121,8 +121,8 @@
 ;;
 ;; Add yasnippet
 ;;
-(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-20170226.1638/")
-(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-auctex-20140223.958/")
+(add-to-list 'load-path "~/.emacs.d/elpa/yasnippet-20180621.50/")
+(add-to-list 'load-path "~/.emacs.d/elpa/auto-complete-auctex-20140223.1758/")
 (load "yasnippet.el" nil t t)
 (load "auto-complete-auctex.el" nil t t)
 (require 'auto-complete-auctex)
@@ -137,21 +137,21 @@
 ;;
 (put 'dired-find-alternate-file 'disabled nil)
 ;;
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(nil nil t)
- '(org-agenda-files
-   (quote
-    ("~/projects/reports/surveillance-2016/report.org" "~/projects/schedule.org")))
- '(package-selected-packages
-   (quote
-    (indium polymode org multiple-cursors multi-web-mode markdown-mode magit ess-R-object-popup dired+ auto-complete-auctex auctex)))
- '(send-mail-function (quote smtpmail-send-it))
- '(smtpmail-smtp-server "localhost")
- '(smtpmail-smtp-service 1025))
+;; (custom-set-variables
+;;  ;; custom-set-variables was added by Custom.
+;;  ;; If you edit it by hand, you could mess it up, so be careful.
+;;  ;; Your init file should contain only one such instance.
+;;  ;; If there is more than one, they won't work right.
+;;  '(nil nil t)
+;;  '(org-agenda-files
+;;    (quote
+;;     ("~/projects/schedule.org")))
+;;  '(package-selected-packages
+;;    (quote
+;;     (indium polymode org multiple-cursors multi-web-mode markdown-mode magit ess-R-object-popup dired+ auto-complete-auctex auctex)))
+;;  '(send-mail-function (quote smtpmail-send-it))
+;;  '(smtpmail-smtp-server "localhost")
+;;  '(smtpmail-smtp-service 1025))
 ;;
 ;; Email address
 ;;
@@ -159,17 +159,17 @@
 (setq user-full-name "Thomas Rosendal")
 ;;
 ;; gnus mail setup
-(require 'gnus)
-(setq nnml-directory "~/mail")
-(setq message-directory "~/mail")
-(setq gnus-select-method
-      '(nnimap "davmail"
-               (nnimap-address "localhost")
-               (nnimap-server-port 1143)
-               (nnimap-stream ssl)))
-(setq gnus-thread-sort-functions
-      '(gnus-thread-sort-by-number
-	(not gnus-thread-sort-by-date)))
+;; (require 'gnus)
+;; (setq nnml-directory "~/mail")
+;; (setq message-directory "~/mail")
+;; (setq gnus-select-method
+;;       '(nnimap "davmail"
+;;                (nnimap-address "localhost")
+;;                (nnimap-server-port 1143)
+;;                (nnimap-stream ssl)))
+;; (setq gnus-thread-sort-functions
+;;       '(gnus-thread-sort-by-number
+;; 	(not gnus-thread-sort-by-date)))
 ;;
 ;; resize windows quickly
 ;;
@@ -254,6 +254,8 @@
 ;;
 ;; html and javascript editing
 ;;
+(add-to-list 'load-path "~/.emacs.d/multi-web-mode/")
+(load "multi-web-mode.el" nil t t)
 (require 'multi-web-mode)
 (setq mweb-default-major-mode 'html-mode)
 (setq mweb-tags
