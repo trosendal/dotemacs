@@ -21,7 +21,7 @@
 (dired-hide-details-mode)
 (text-scale-set -1)
 (other-window 1)
-;;(find-file "~/projects/schedule.org")
+(find-file "~/projects/schedule.org")
 (load-theme 'misterioso)
 ;;
 ;; Get rid of splash screen
@@ -53,7 +53,23 @@
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
 ;; Set the default Dictionary
 (setq ispell-dictionary "british")
-(setq ispell-personal-dictionary "~/.personal-dictionary")
+;;(setq ispell-personal-dictionary "~/.personal-dictionary")
+(defun dict-swedish ()
+  "Change dictionary to Swedish"
+  (interactive)
+  (flyspell-mode-off)
+  (ispell-change-dictionary "svenska")
+  (flyspell-buffer)
+  (flyspell-mode)
+  )
+(defun dict-english ()
+  "Change dictionary to English"
+  (interactive)
+  (flyspell-mode-off)
+  (ispell-change-dictionary "british")
+  (flyspell-buffer)
+  (flyspell-mode-on)
+  )
 ;;
 ;; encoding of files UTF-8
 (prefer-coding-system 'utf-8)
@@ -155,13 +171,30 @@
 ;;
 ;; Email address
 ;;
-(setq user-mail-address "thomas.rosendal@sva.se")
-(setq user-full-name "Thomas Rosendal")
+(require 'mu4e)
+;;(setq mu4e-maildir "~/.Mail/sva")
+(setq mu4e-change-filenames-when-moving t)
+(setq message-send-mail-function 'smtpmail-send-it
+      smtpmail-stream-type 'starttls
+      smtpmail-default-smtp-server "localhost"
+      smtpmail-smtp-server "localhost"
+      smtpmail-smtp-service 1143
+      smtpmail-smtp-user "thomas.rosendal@sva.se"
+      ;;mu4e-get-mail-command "offlineimap -c ~/.offlineimaprc_inboxonly"
+      ;; account info
+      user-mail-address "thomas.rosendal@sva.se"
+      user-full-name  "Thomas Rosendal")
+(add-hook 'mu4e-compose-mode-hook 'flyspell-mode)
+
 ;;
 ;; gnus mail setup
 ;; (require 'gnus)
-;; (setq nnml-directory "~/mail")
-;; (setq message-directory "~/mail")
+;; (setq gnus-select-method
+;;       '(nnmaildir "sva"
+;;                   (directory "~/.Mail/sva/")
+;;                   (directory-files nnheader-directory-files-safe)
+;;                   (get-new-mail nil)))
+;; (setq message-directory "~/.Mail/")
 ;; (setq gnus-select-method
 ;;       '(nnimap "davmail"
 ;;                (nnimap-address "localhost")
@@ -220,12 +253,19 @@
 (global-set-key (kbd "C-x <C-f11>") 'unfocus-on-emacs)
 ;;
 ;; Polymode for rmd files
-(require 'poly-R)
+;;(require 'poly-R)
 (require 'poly-markdown)
 (require 'ess-site)
 (autoload 'r-mode "ess-site" "(Autoload)" t)
+(add-hook 'ess-mode 'undo-tree-mode)
+;; edit roxy template
+;; ess-roxy-update-entry
+(setq ess-roxy-template-alist (list (cons "title" "")
+                                    (cons "description" "")
+                                    (cons "param" "")
+                                    (cons "return" "")))
 ;; MARKDOWN
-(add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
+;; (add-to-list 'auto-mode-alist '("\\.md" . poly-markdown-mode))
 ;; R modes
 (add-to-list 'auto-mode-alist '("\\.Snw" . poly-noweb+r-mode))
 (add-to-list 'auto-mode-alist '("\\.Rnw" . poly-noweb+r-mode))
@@ -254,16 +294,16 @@
 ;;
 ;; html and javascript editing
 ;;
-(add-to-list 'load-path "~/.emacs.d/multi-web-mode/")
-(load "multi-web-mode.el" nil t t)
-(require 'multi-web-mode)
-(setq mweb-default-major-mode 'html-mode)
-(setq mweb-tags
-  '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
-    (js-mode  "<script[^>]*>" "</script>")
-    (css-mode "<style[^>]*>" "</style>")))
-(setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
-(multi-web-global-mode 1)
+;; (add-to-list 'load-path "~/.emacs.d/multi-web-mode/")
+;; (load "multi-web-mode.el" nil t t)
+;; (require 'multi-web-mode)
+;; (setq mweb-default-major-mode 'html-mode)
+;; (setq mweb-tags
+;;   '((php-mode "<\\?php\\|<\\? \\|<\\?=" "\\?>")
+;;     (js2-mode  "<script[^>]*>" "</script>")
+;;     (css-mode "<style[^>]*>" "</style>")))
+;; (setq mweb-filename-extensions '("php" "htm" "html" "ctp" "phtml" "php4" "php5"))
+;; (multi-web-global-mode 1)
 ;;
 ;;
 ;; Get the svar.el package from somewhere and load it
@@ -436,3 +476,65 @@
 (setq c-default-style "k&r"
       c-basic-offset 4)
 (setq-default indent-tabs-mode nil)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(ispell-alternate-dictionary "~/.sv-personal-dictionary")
+ '(org-agenda-files '("~/projects/schedule.org"))
+ '(package-selected-packages
+   '(counsel counsel-ebdb swiper undo-tree csharp-mode csv-mode indium magit polymode multiple-cursors markdown-mode ess auto-complete-auctex auctex)))
+;; (require 'indium)
+;; (defun start_chrome_debugging ()
+;;     "Start chrome with debugging for indium"
+;;   (interactive)
+;;   (start-process "google-chrome" nil "google-chrome" "--remote-debugging-port=9222" "https://localhost:3000"))
+(require 'auto-complete)
+(require 'counsel)
+(require 'swiper)
+(setq ivy-use-virtual-buffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(define-key read-expression-map (kbd "C-r") 'counsel-expression-history)
+
+;; Python3
+(setq py-python-command "python3")
+(setq python-shell-interpreter "python3")
+
+;; mu4e
+(require 'mu4e)
+;; emacs allows you to select an e-mail program as the default program it uses when you press C-x m (compose-mail), call report-emacs-bug and so on. If you want to use mu4e for this, you do so by adding the following to your configuration:
+(setq mail-user-agent 'mu4e-user-agent)
+
+;; don't keep message buffers around
+(setq message-kill-buffer-on-exit t)
+
+;; no need to confirm
+(setq mu4e-confirm-quit nil)
+
+;; single window mode
+;(setq mu4e-split-view 'single-window)
+
+;;mu4e buffers have a leading space...
+;;" *mu4e-main"
+
+;; display is definitely nicer with these
+(setq mu4e-use-fancy-chars t)
+(setq mu4e-trash-folder "/Deleted Items";; must be configured later by context
+      mu4e-drafts-folder "/Drafts" ;; must be configured later by context
+      mu4e-sent-folder "/Sent Items" ;; must be configured later by context
+      mu4e-compose-reply-to-address nil ;; must be configured later by context
+      mu4e-compose-signature nil ;; must be configured later by context
+      )
+
+(require 'server)
+;; some systems don't auto-detect the socket dir, so specify it here and for the client:
+(setq server-socket-dir "/tmp/emacs-shared")
+(server-start)
