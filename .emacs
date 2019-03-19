@@ -21,8 +21,8 @@
 (dired-hide-details-mode)
 (text-scale-set -1)
 (other-window 1)
-(find-file "~/projects/schedule.org")
-(load-theme 'misterioso)
+(find-file "~/projects/schedule/schedule.org")
+(load-theme 'whiteboard)
 ;;
 ;; Get rid of splash screen
 ;;
@@ -482,7 +482,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(ispell-alternate-dictionary "~/.sv-personal-dictionary")
- '(org-agenda-files '("~/projects/schedule.org"))
+ '(org-agenda-files '("~/projects/schedule/schedule.org"))
  '(package-selected-packages
    '(counsel counsel-ebdb swiper undo-tree csharp-mode csv-mode indium magit polymode multiple-cursors markdown-mode ess auto-complete-auctex auctex)))
 ;; (require 'indium)
